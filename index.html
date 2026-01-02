@@ -9,314 +9,266 @@
             --bg-color: #000000;
             --card-bg: #111111;
             --text-color: #ffffff;
-            --sub-text: #888888;
             --header-bg: #ffffff;
             --header-text: #000000;
             --nav-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            --admin-green: #00ff88;
-            --error-red: #ff4d4d;
-            --border-color: #222222;
+            --purple-blue: #6a11cb;
         }
 
-        body.light-theme {
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #000000;
-            --sub-text: #666666;
-            --header-bg: #000000;
-            --header-text: #ffffff;
-            --border-color: #e0e0e0;
-        }
-
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg-color); color: var(--text-color); padding-bottom: 70px; transition: 0.3s; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg-color); color: var(--text-color); padding-bottom: 90px; }
         
-        /* Header - Minimal & High */
-        header { 
-            background: var(--header-bg); color: var(--header-text); 
-            text-align: center; padding: 12px 10px 15px 10px; 
-            border-radius: 0 0 25px 25px; position: sticky; top: 0; z-index: 1000; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
-        }
-        header h1 { margin: 0; font-size: 0.9rem; text-transform: uppercase; font-weight: 900; letter-spacing: 1px; }
+        /* Header */
+        header { background: var(--header-bg); color: var(--header-text); text-align: center; padding: 15px 10px; border-radius: 0 0 30px 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        header h1 { margin: 0; font-size: 1rem; text-transform: uppercase; font-weight: 900; }
 
         /* Views */
-        .view { display: none; padding: 20px; animation: slideUp 0.4s ease; }
+        .view { display: none; padding: 20px; }
         .view.active { display: block; }
-        @keyframes slideUp { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
 
-        /* Sem Labels */
-        .sem-label { font-size: 1.2rem; font-weight: bold; margin: 20px 0 15px; border-left: 5px solid #2575fc; padding-left: 12px; }
-
-        /* Subject Grid */
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 10px; }
+        /* Subject Cards */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .card { display: flex; flex-direction: column; align-items: center; cursor: pointer; text-align: center; }
-        
-        /* ATTRACTIVE GLOWING ICONS */
-        .icon { 
-            width: 75px; height: 75px; border-radius: 22px; 
-            display: flex; justify-content: center; align-items: center; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4); margin-bottom: 8px; 
-            transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
-        }
-        .card:active .icon { transform: scale(0.9); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .icon svg { width: 38px; height: 38px; fill: #fff; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+        .icon { width: 80px; height: 80px; border-radius: 24px; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); margin-bottom: 8px; }
+        .icon svg { width: 40px; height: 40px; fill: #fff; }
+        .sub-name { font-size: 0.65rem; color: #bbb; font-weight: 600; }
 
-        /* Icon Gradients */
-        .g-ph { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
-        .g-me { background: linear-gradient(135deg, #f85032, #e73827); }
-        .g-m1 { background: linear-gradient(135deg, #11998e, #38ef7d); }
-        .g-ee { background: linear-gradient(135deg, #f9d423, #ff4e50); }
-        .g-cp { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .g-ch { background: linear-gradient(135deg, #962668, #db7093); }
-        .g-ex { background: linear-gradient(135deg, #6a11cb, #2575fc); }
-        .g-eg { background: linear-gradient(135deg, #232526, #414345); }
-        .g-m2 { background: linear-gradient(135deg, #fc4a1a, #f7b733); }
-
-        .sub-name { font-size: 0.6rem; color: var(--sub-text); font-weight: 700; line-height: 1.2; }
-
-        /* Login & Feature Cards */
-        .card-ui { background: var(--card-bg); padding: 20px; border-radius: 25px; border: 1px solid var(--border-color); margin-bottom: 20px; }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid var(--border-color); background: #000; color: #fff; box-sizing: border-box; }
-        .btn-main { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; }
-
-        /* FIXED BOTTOM NAV - Adjusted Niche */
-        nav { 
-            position: fixed; bottom: 0; width: 100%; max-width: 480px; 
-            background: var(--nav-gradient); display: flex; justify-content: space-around; 
-            padding: 10px 0 12px 0; z-index: 2000; border-radius: 25px 25px 0 0;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-        }
-        .nav-tab { color: rgba(255,255,255,0.5); text-align: center; cursor: pointer; flex: 1; transition: 0.3s; }
-        .nav-tab.active { color: #ffffff; }
-        .nav-tab svg { width: 22px; height: 22px; fill: currentColor; display: block; margin: 0 auto 3px; }
-        .nav-tab span { font-size: 0.7rem; font-weight: bold; }
+        /* Gradients */
+        .g1 { background: linear-gradient(135deg, #00d2ff, #3a7bd5); } .g2 { background: linear-gradient(135deg, #f85032, #e73827); }
+        .g3 { background: linear-gradient(135deg, #11998e, #38ef7d); } .g4 { background: linear-gradient(135deg, #f9d423, #ff4e50); }
+        .g5 { background: linear-gradient(135deg, #4facfe, #00f2fe); } .g6 { background: linear-gradient(135deg, #962668, #db7093); }
+        .g7 { background: linear-gradient(135deg, #6a11cb, #2575fc); } .g8 { background: linear-gradient(135deg, #232526, #414345); }
+        .g9 { background: linear-gradient(135deg, #fc4a1a, #f7b733); }
 
         /* Modal Settings */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 3000; justify-content: center; align-items: center; }
-        .modal { background: #111; width: 90%; max-width: 380px; border-radius: 30px; padding: 25px; border: 1px solid #222; text-align: center; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal { background: #111; width: 90%; max-width: 380px; border-radius: 30px; padding: 20px; border: 1px solid #222; text-align: center; max-height: 80vh; overflow-y: auto; }
         .btn-opt { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 18px; font-weight: bold; cursor: pointer; margin-bottom: 12px; text-align: left; }
-        .btn-up { background: var(--admin-green); color: #000; padding: 10px; border-radius: 10px; font-size: 0.7rem; border: none; margin-bottom: 15px; width: 100%; font-weight: bold; }
         
-        /* Features Toggle */
-        .feature-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
-        .switch { position: relative; width: 44px; height: 22px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #00ff88; }
-        input:checked + .slider:before { transform: translateX(22px); }
+        /* Admin Upload Button */
+        .btn-up { background: #2ecc71; color: #fff; padding: 10px; border-radius: 12px; border: none; cursor: pointer; display: none; width: 100%; margin-bottom: 15px; font-weight: bold; }
+
+        /* File List Items */
+        .file-item { background: #1a1a1a; color: #fff; padding: 15px; border-radius: 15px; margin-bottom: 10px; display: flex; align-items: center; border: 1px solid #333; cursor: pointer; text-align: left; }
+
+        /* PDF VIEWER SCREEN */
+        #viewer-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 5000; padding-top: 20px; }
+        #pdf-frame { width: 100%; height: 90%; border: none; }
+
+        /* Bottom Nav */
+        nav { position: fixed; bottom: 0; width: 100%; max-width: 480px; background: var(--nav-gradient); display: flex; justify-content: space-around; padding: 15px 0; border-radius: 25px 25px 0 0; z-index: 500; }
+        .nav-tab { color: rgba(255,255,255,0.5); text-align: center; cursor: pointer; flex: 1; font-size: 0.75rem; font-weight: bold; }
+        .nav-tab.active { color: #fff; }
+        .nav-tab svg { width: 22px; height: 22px; fill: currentColor; display: block; margin: 0 auto 5px; }
     </style>
 </head>
 <body>
 
 <header><h1>SPPU Notes FE 2025-2026</h1></header>
 
-<!-- HOME VIEW -->
+<!-- HOME -->
 <div id="home" class="view active">
-    <div class="sem-label">Semester 1</div>
-    <div class="grid" id="sem1"></div>
-    <div class="sem-label">Semester 2</div>
-    <div class="grid" id="sem2"></div>
+    <div class="grid" id="subjects-grid" style="padding: 20px;"></div>
 </div>
 
-<!-- RECENT VIEW (Newly Added) -->
+<!-- RECENT -->
 <div id="recent" class="view">
-    <div class="sem-label">Recently Viewed</div>
-    <div id="recent-list" style="padding: 10px;"></div>
+    <h2 style="padding: 20px;">Recently Viewed</h2>
+    <div id="history-list" style="padding: 0 20px;"></div>
 </div>
 
-<!-- PROFILE VIEW -->
+<!-- PROFILE -->
 <div id="profile" class="view">
-    <div class="sem-label">Profile</div>
-    <div id="login-form" class="card-ui">
-        <select id="l-role"><option value="user">Student Login</option><option value="admin">Admin Login</option></select>
-        <input type="text" id="l-user" placeholder="Username">
-        <input type="password" id="l-pass" placeholder="Password">
-        <button class="btn-main" onclick="login()">Login</button>
+    <div id="login-form" style="padding: 20px;">
+        <div style="background: #111; padding: 25px; border-radius: 25px; border: 1px solid #222;">
+            <h3>Admin / Student Login</h3>
+            <input type="text" id="l-user" placeholder="Username" style="width:100%; padding:12px; margin:10px 0; border-radius:10px; background:#000; border:1px solid #333; color:#fff;">
+            <input type="password" id="l-pass" placeholder="Password" style="width:100%; padding:12px; margin:10px 0; border-radius:10px; background:#000; border:1px solid #333; color:#fff;">
+            <button onclick="login()" style="width:100%; padding:15px; border-radius:15px; border:none; background:#fff; font-weight:bold; margin-top:10px;">Login</button>
+        </div>
     </div>
-    <div id="logged-in" class="card-ui" style="display:none">
+    <div id="logged-in" style="display:none; padding: 20px; text-align:center;">
         <h3 id="u-name"></h3>
-        <p id="u-role" style="color:#00ff88; font-weight:bold;"></p>
-        <button class="btn-main" style="background:var(--error-red); color:#fff;" onclick="logout()">Logout</button>
-    </div>
-
-    <div class="sem-label">Features</div>
-    <div class="card-ui">
-        <div class="feature-row">
-            <span>Dark Mode</span>
-            <label class="switch"><input type="checkbox" id="theme-toggle" onchange="toggleTheme()"><span class="slider"></span></label>
-        </div>
-        <div class="feature-row" onclick="shareApp()" style="cursor:pointer">
-            <span>Share App</span>
-            <svg style="width:20px; fill:#fff;" viewBox="0 0 24 24"><path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.35C15.11,18.53 15.08,18.72 15.08,18.92A3,3 0 0,0 18.08,21.92A3,3 0 0,0 21.08,18.92A3,3 0 0,0 18.08,15.92L18,16.08Z"/></svg>
-        </div>
+        <p id="u-role" style="color:#2575fc; font-weight:bold;"></p>
+        <button onclick="logout()" style="width:100%; padding:15px; border-radius:15px; border:none; background:#e74c3c; color:#fff; font-weight:bold;">Logout</button>
     </div>
 </div>
 
-<!-- BOTTOM NAV -->
-<nav>
-    <div class="nav-tab active" onclick="switchTab('home', this)"><svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg><span>Home</span></div>
-    <div class="nav-tab" onclick="switchTab('recent', this)"><svg viewBox="0 0 24 24"><path d="M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3M12,8V13L16.28,15.54L17,14.33L13.5,12.25V8H12Z"/></svg><span>Recent</span></div>
-    <div class="nav-tab" onclick="switchTab('profile', this)"><svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg><span>Profile</span></div>
-</nav>
-
-<!-- Subject Modal -->
+<!-- SUBJECT MODAL -->
 <div id="overlay" class="overlay" onclick="closeMenu()">
     <div class="modal" onclick="event.stopPropagation()">
         <h3 id="mod-sub">Subject Name</h3>
         <div id="main-menu">
-            <button class="btn-opt" onclick="showUnits()">Notes (Unit 1-5) ➔</button>
-            <button class="btn-opt" onclick="showAssign()">Assignments (1-5) ➔</button>
-            <button class="btn-opt" onclick="openCategory('PYQ Papers')">PYQ Papers ➔</button>
+            <button class="btn-opt" onclick="showSection('Units')">Notes (Unit 1-5) ➔</button>
+            <button class="btn-opt" onclick="showSection('Assignments')">Assignments (1-5) ➔</button>
+            <button class="btn-opt" onclick="openCategory('Previous Year Papers')">PYQ Papers ➔</button>
             <button class="btn-opt" onclick="openCategory('Paper Answers')">Paper Answers ➔</button>
         </div>
-        <div id="unit-menu" style="display:none">
-            <p onclick="showMain()" style="color:#2575fc; cursor:pointer; font-weight:bold;">← Back</p>
-            <div id="unit-container"></div>
+
+        <div id="sub-menu" style="display:none">
+            <p onclick="showMain()" style="color:#2575fc; cursor:pointer; margin-bottom:15px; font-weight:bold;">← Back</p>
+            <div id="sub-container"></div>
         </div>
-        <div id="assign-menu" style="display:none">
-            <p onclick="showMain()" style="color:#2575fc; cursor:pointer; font-weight:bold;">← Back</p>
-            <div id="assign-container"></div>
+
+        <div id="file-list-view" style="display:none">
+            <p onclick="goBack()" style="color:#2575fc; cursor:pointer; margin-bottom:15px; font-weight:bold;">← Back</p>
+            <h4 id="cat-title" style="color:#2575fc;">Files</h4>
+            <button class="btn-up" id="up-btn" onclick="uploadFile()">+ Admin: Upload PDF</button>
+            <div id="file-container"></div>
         </div>
-        <div id="file-list" style="display:none">
-            <p onclick="goBackMenu()" style="color:#2575fc; cursor:pointer; font-weight:bold;">← Back</p>
-            <h4 id="cat-title" style="color:#fff;">Files</h4>
-            <button class="btn-up admin-only" id="up-btn" onclick="upload()">+ Admin: Upload File</button>
-            <div id="file-cont"></div>
-        </div>
-        <button onclick="closeMenu()" style="background:none; border:none; color:var(--error-red); font-weight:bold; margin-top:20px;">Close</button>
+        <button onclick="closeMenu()" style="background:none; border:none; color:#e74c3c; font-weight:bold; margin-top:20px;">Close</button>
     </div>
 </div>
 
+<!-- FULL SCREEN PDF VIEWER -->
+<div id="viewer-screen">
+    <button onclick="closeViewer()" style="margin: 15px; padding: 10px 20px; border-radius: 10px; border:none; background:#fff; font-weight:bold;">← Back to App</button>
+    <iframe id="pdf-frame"></iframe>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-tab active" onclick="switchTab('home', this)"><svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>Home</div>
+    <div class="nav-tab" onclick="switchTab('recent', this)"><svg viewBox="0 0 24 24"><path d="M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3M12,8V13L16.28,15.54L17,14.33L13.5,12.25V8H12Z"/></svg>Recent</div>
+    <div class="nav-tab" onclick="switchTab('profile', this)"><svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>Profile</div>
+</nav>
+
 <script>
-    let isAdmin = false; let currentSub = ""; let currentCat = "";
+    let isAdmin = false;
+    let currentSub = "";
+    let currentCat = "";
+    let currentView = "main";
 
-    const svgs = {
-        ph: `<svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 1,0 22,12A10,10 0 0,0 12,2M12,19.7A7.7,7.7 0 1,1 19.7,12A7.7,7.7 0 0,1 12,19.7M12,6A6,6 0 1,0 18,12A6,6 0 0,0 12,6M12,15A3,3 0 1,1 15,12A3,3 0 0,1 12,15Z"/></svg>`,
-        me: `<svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97L21.54,13.97L22.54,12L21.54,10.03L19.43,11.03C19.3,10.5 19.1,10 18.8,9.5L20.8,8.5L19.8,6.5L17.8,7.5C17.4,7.1 17,6.8 16.5,6.5L16.5,4.5L14.5,4.5L14.5,6.5L12,6.5L12,2L10,2L10,6.5L7.5,6.5L7.5,4.5L5.5,4.5L5.5,6.5C5,6.8 4.6,7.1 4.2,7.5L2.2,6.5L1.2,8.5L3.2,9.5C2.9,10 2.7,10.5 2.57,11.03L0.46,10.03L1.46,12L0.46,13.97L2.57,12.97C2.7,13.5 2.9,14 3.2,14.5L1.2,15.5L2.2,17.5L4.2,16.5C4.6,16.9 5,17.2 5.5,17.5L5.5,19.5L7.5,19.5L7.5,17.5L10,17.5L10,22L12,22L12,17.5L14.5,17.5L14.5,19.5L16.5,19.5L16.5,17.5C17,17.2 17.4,16.9 17.8,16.5L19.8,17.5L20.8,15.5L18.8,14.5C19.1,14 19.3,13.5 19.43,12.97Z"/></svg>`,
-        m1: `<svg viewBox="0 0 24 24"><path d="M18.5,18.5V11.5H16.5V13.5H14.5V11.5H11.5V13.5H9.5V11.5H7.5V18.5H18.5M12,2L1,21H23L12,2Z"/></svg>`,
-        ee: `<svg viewBox="0 0 24 24"><path d="M7,2V11H10V22L17,10H13L17,2H7Z"/></svg>`,
-        cp: `<svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 1,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 1,1 20,12A8,8 0 0,1 12,20M11,17H13V15H11V17M11,13H13V7H11V13Z"/></svg>`,
-        ch: `<svg viewBox="0 0 24 24"><path d="M12,3L2,21H22L12,3M12,7.7L18.2,19H5.8L12,7.7M11,13H13V15H11V13Z"/></svg>`,
-        ex: `<svg viewBox="0 0 24 24"><path d="M21,16.5L12,21.5L3,16.5V7.5L12,2.5L21,7.5V16.5M12,4.33L19,8.22V15.78L12,19.67L5,15.78V8.22L12,4.33Z"/></svg>`,
-        eg: `<svg viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.88,8.88M3,17.25V21H6.75L17.81,9.93L14.07,6.19L3,17.25Z"/></svg>`,
-        m2: `<svg viewBox="0 0 24 24"><path d="M13,6H11V11H6V13H11V18H13V13H18V11H13V6Z"/></svg>`
+    const subjects = [
+        {n: "Engineering Physics", c: "g1", i: "⚛️"}, {n: "Engineering Mechanics", c: "g2", i: "⚙️"},
+        {n: "Engineering Mathematics 1", c: "g3", i: "📐"}, {n: "Basic Electrical", c: "g4", i: "⚡"},
+        {n: "Engineering FPL", c: "g5", i: "💻"}, {n: "Engineering Chemistry", c: "g6", i: "🧪"},
+        {n: "Engineering Electronics", c: "g7", i: "🔌"}, {n: "Engineering Graphics", c: "g8", i: "🖊️"},
+        {n: "Engineering Maths 2", c: "g9", i: "♾️"}
+    ];
+
+    window.onload = () => {
+        const grid = document.getElementById('subjects-grid');
+        subjects.forEach(s => {
+            grid.innerHTML += `<div class="card" onclick="openSubject('${s.n}')"><div class="icon ${s.c}">${s.i}</div><div class="sub-name">${s.n}</div></div>`;
+        });
     };
-
-    const subs = {
-        sem1: [
-            {n: "Engineering Physics", c: "g-ph", i: svgs.ph}, {n: "Engineering Mechanics", c: "g-me", i: svgs.me},
-            {n: "Engineering Mathematics 1", c: "g-m1", i: svgs.m1}, {n: "Engineering Basic Electrical", c: "g-ee", i: svgs.ee},
-            {n: "Engineering FPL", c: "g-cp", i: svgs.cp}
-        ],
-        sem2: [
-            {n: "Engineering Chemistry", c: "g-ch", i: svgs.ch}, {n: "Engineering Basic Electronics", c: "g-ex", i: svgs.ex},
-            {n: "Engineering Graphics", c: "g-eg", i: svgs.eg}, {n: "Engineering Mathematics 2", c: "g-m2", i: svgs.m2}
-        ]
-    };
-
-    function init() {
-        const fill = (id, data) => {
-            const g = document.getElementById(id);
-            data.forEach(s => {
-                const d = document.createElement('div'); d.className = 'card';
-                d.onclick = () => openSub(s.n);
-                d.innerHTML = `<div class="icon ${s.c}">${s.i}</div><div class="sub-name">${s.n}</div>`;
-                g.appendChild(d);
-            });
-        };
-        fill('sem1', subs.sem1); fill('sem2', subs.sem2);
-        if (localStorage.getItem('theme') === 'light') toggleTheme(true);
-    }
-    init();
 
     function switchTab(id, el) {
         document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
-        if(id === 'recent') updateRecent();
+        if(id === 'recent') updateHistory();
     }
 
-    function login() {
-        const r = document.getElementById('l-role').value; const u = document.getElementById('l-user').value; const p = document.getElementById('l-pass').value;
-        if(r === 'admin') {
-            if(u === 'pratapmahadik' && p === '9356858235') { isAdmin = true; setProfile("Pratap Mahadik", "ADMIN"); }
-            else { alert("Wrong Password!"); }
-        } else { if(!u) return; isAdmin = false; setProfile(u, "STUDENT"); }
-    }
-
-    function setProfile(n, r) {
-        document.getElementById('login-form').style.display = 'none'; document.getElementById('logged-in').style.display = 'block';
-        document.getElementById('u-name').innerText = "Hello, " + n; document.getElementById('u-role').innerText = r;
-    }
-
-    function openSub(name) {
-        currentSub = name; document.getElementById('mod-sub').innerText = name;
+    function openSubject(name) {
+        currentSub = name;
+        document.getElementById('mod-sub').innerText = name;
         document.getElementById('overlay').style.display = 'flex';
-        renderMenus(); showMain();
+        showMain();
     }
 
-    function renderMenus() {
-        const u = document.getElementById('unit-container'); const a = document.getElementById('assign-container');
-        u.innerHTML = ""; a.innerHTML = "";
+    function showSection(type) {
+        currentView = "sub";
+        document.getElementById('main-menu').style.display = 'none';
+        document.getElementById('sub-menu').style.display = 'block';
+        const container = document.getElementById('sub-container');
+        container.innerHTML = "";
         for(let i=1; i<=5; i++) {
-            u.innerHTML += `<button class="btn-opt" onclick="openCat('Unit ${i}')">Unit ${i} Notes</button>`;
-            a.innerHTML += `<button class="btn-opt" onclick="openCat('Assignment ${i}')">Assignment ${i}</button>`;
+            let label = type === 'Units' ? `Unit ${i} Notes` : `Assignment ${i}`;
+            container.innerHTML += `<button class="btn-opt" onclick="openCategory('${label}')">${label}</button>`;
         }
     }
 
-    function openCat(cat) {
-        currentCat = cat; document.querySelectorAll('#main-menu, #unit-menu, #assign-menu').forEach(m => m.style.display = 'none');
-        document.getElementById('file-list').style.display = 'block';
+    function openCategory(cat) {
+        currentCat = cat;
+        document.getElementById('main-menu').style.display = 'none';
+        document.getElementById('sub-menu').style.display = 'none';
+        document.getElementById('file-list-view').style.display = 'block';
         document.getElementById('cat-title').innerText = cat;
         document.getElementById('up-btn').style.display = isAdmin ? 'block' : 'none';
         renderFiles();
     }
 
     function renderFiles() {
-        const c = document.getElementById('file-cont'); c.innerHTML = "";
-        const files = JSON.parse(localStorage.getItem(`${currentSub}_${currentCat}`)) || [];
-        if(files.length === 0) c.innerHTML = `<p style="color:#666; padding:20px;">No files found.</p>`;
-        files.forEach(f => c.innerHTML += `<div class="btn-opt" onclick="openFile('${f}')">${f}</div>`);
+        const container = document.getElementById('file-container');
+        container.innerHTML = "";
+        const key = `${currentSub}_${currentCat}`;
+        const files = JSON.parse(localStorage.getItem(key)) || [];
+        if(files.length === 0) container.innerHTML = "<p style='color:#555;'>No files uploaded.</p>";
+        files.forEach((file, index) => {
+            container.innerHTML += `<div class="file-item" onclick="viewPDF('${key}', ${index})">📄 ${file.name}</div>`;
+        });
     }
 
-    function upload() {
-        const inp = document.createElement('input'); inp.type = 'file';
+    // ACTUAL PDF UPLOAD LOGIC
+    function uploadFile() {
+        const inp = document.createElement('input');
+        inp.type = 'file';
+        inp.accept = 'application/pdf';
         inp.onchange = e => {
-            const f = e.target.files[0].name; const key = `${currentSub}_${currentCat}`;
-            let files = JSON.parse(localStorage.getItem(key)) || []; files.push(f);
-            localStorage.setItem(key, JSON.stringify(files)); renderFiles();
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const fileData = event.target.result; // Base64 data
+                const key = `${currentSub}_${currentCat}`;
+                let files = JSON.parse(localStorage.getItem(key)) || [];
+                files.push({ name: file.name, data: fileData });
+                localStorage.setItem(key, JSON.stringify(files));
+                alert("File Uploaded Successfully!");
+                renderFiles();
+            };
+            reader.readAsDataURL(file);
         };
         inp.click();
     }
 
-    function openFile(name) {
-        alert("Opening: " + name);
-        let recent = JSON.parse(localStorage.getItem('recent_docs')) || [];
-        if(!recent.includes(name)) { recent.unshift(name); localStorage.setItem('recent_docs', JSON.stringify(recent.slice(0,10))); }
+    function viewPDF(key, index) {
+        const files = JSON.parse(localStorage.getItem(key));
+        const file = files[index];
+        const frame = document.getElementById('pdf-frame');
+        frame.src = file.data;
+        document.getElementById('viewer-screen').style.display = 'block';
+        
+        // Add to history
+        let history = JSON.parse(localStorage.getItem('recent_history')) || [];
+        if(!history.some(h => h.name === file.name)) {
+            history.unshift({ name: file.name, data: file.data });
+            localStorage.setItem('recent_history', JSON.stringify(history.slice(0, 10)));
+        }
     }
 
-    function updateRecent() {
-        const c = document.getElementById('recent-list');
-        const docs = JSON.parse(localStorage.getItem('recent_docs')) || [];
-        c.innerHTML = docs.length === 0 ? '<p style="text-align:center; color:#555;">No history.</p>' : '';
-        docs.forEach(d => c.innerHTML += `<div class="btn-opt" onclick="openFile('${d}')" style="background:var(--card-bg); color:var(--text-color); border:1px solid var(--border-color);">${d}</div>`);
+    function updateHistory() {
+        const container = document.getElementById('history-list');
+        const history = JSON.parse(localStorage.getItem('recent_history')) || [];
+        container.innerHTML = history.length === 0 ? "No history." : "";
+        history.forEach((h, i) => {
+            container.innerHTML += `<div class="file-item" onclick="openHistoryPDF(${i})">📄 ${h.name}</div>`;
+        });
     }
 
-    function toggleTheme(init = false) {
-        if (!init) document.body.classList.toggle('light-theme');
-        else document.body.classList.add('light-theme');
-        localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+    function openHistoryPDF(i) {
+        const history = JSON.parse(localStorage.getItem('recent_history'));
+        document.getElementById('pdf-frame').src = history[i].data;
+        document.getElementById('viewer-screen').style.display = 'block';
     }
 
-    function shareApp() { navigator.share({ title: 'SPPU Notes FE', url: window.location.href }); }
+    function closeViewer() { document.getElementById('viewer-screen').style.display = 'none'; document.getElementById('pdf-frame').src = ""; }
+    function login() {
+        const u = document.getElementById('l-user').value;
+        const p = document.getElementById('l-pass').value;
+        if(u === 'pratapmahadik' && p === '9356858235') {
+            isAdmin = true;
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('logged-in').style.display = 'block';
+            document.getElementById('u-name').innerText = "Hello, Pratap Mahadik";
+            document.getElementById('u-role').innerText = "ADMIN ACCESS";
+        } else { alert("Login failed! Invalid credentials."); }
+    }
+    function logout() { isAdmin = false; location.reload(); }
     function closeMenu() { document.getElementById('overlay').style.display = 'none'; }
-    function showMain() { document.getElementById('main-menu').style.display = 'block'; document.getElementById('unit-menu').style.display = 'none'; document.getElementById('assign-menu').style.display = 'none'; document.getElementById('file-list').style.display = 'none'; }
-    function showUnits() { document.getElementById('main-menu').style.display = 'none'; document.getElementById('unit-menu').style.display = 'block'; }
-    function showAssign() { document.getElementById('main-menu').style.display = 'none'; document.getElementById('assign-menu').style.display = 'block'; }
-    function goBackMenu() { if(currentCat.includes("Unit")) showUnits(); else if(currentCat.includes("Assignment")) showAssign(); else showMain(); }
-    function logout() { isAdmin = false; document.getElementById('login-form').style.display = 'block'; document.getElementById('logged-in').style.display = 'none'; }
+    function showMain() { document.getElementById('main-menu').style.display = 'block'; document.getElementById('sub-menu').style.display = 'none'; document.getElementById('file-list-view').style.display = 'none'; }
+    function goBack() { if(currentCat.includes('Unit') || currentCat.includes('Assignment')) showSection(currentCat.includes('Unit') ? 'Units' : 'Assignments'); else showMain(); }
 </script>
 </body>
 </html>
