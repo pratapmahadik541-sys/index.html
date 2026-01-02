@@ -1,274 +1,197 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPPU Notes - Premium UI</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        /* Deep Black Body Background */
-        body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #ffffff; 
-            background-color: #000000; 
-            background-image: radial-gradient(circle at 50% 10%, #111 0%, #000 70%);
-            background-attachment: fixed;
-            min-height: 100vh;
-        }
-
-        /* Top Black Side (Stripe) */
-        .top-black-bar {
-            background-color: #000000;
-            height: 8px; /* Black side ki thickness */
-            width: 100%;
-            position: sticky;
-            top: 0;
-            z-index: 1100;
-        }
-
-        /* White Header with Black Text */
-        header {
-            background-color: #ffffff; 
-            color: #000000; 
-            text-align: center;
-            padding: 15px 0;
-            position: sticky;
-            top: 8px; /* Black bar ke theek neeche */
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        header h1 { 
-            margin: 0; 
-            font-size: 1.4rem; 
-            letter-spacing: 1px;
-            font-weight: 800;
-        }
-
-        header p { 
-            margin: 0; 
-            font-size: 0.75rem; 
-            font-weight: 600;
-            color: #444; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .container {
-            width: 95%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-
-        h2 {
-            color: #ffffff;
-            font-size: 1rem;
-            margin: 35px 0 20px 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: flex;
-            align-items: center;
-        }
-        
-        h2::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            margin-left: 15px;
-        }
-
-        /* Subject Grid Layout */
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
-            gap: 20px;
-            justify-items: center;
-        }
-
-        .subject-card {
-            width: 100px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .subject-card:hover { transform: translateY(-8px); }
-        .subject-card:active { transform: scale(0.9); }
-
-        /* App Icons Style */
-        .icon-box {
-            width: 75px;
-            height: 75px;
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            color: white;
-            font-size: 1.8rem;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .subject-card span {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #ddd;
-        }
-
-        /* Custom Gradients for Subjects */
-        .bg-physics { background: linear-gradient(135deg, #6a11cb, #2575fc); box-shadow: 0 10px 25px rgba(37, 117, 252, 0.4); }
-        .bg-mechanics { background: linear-gradient(135deg, #f093fb, #f5576c); box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4); }
-        .bg-maths { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 10px 25px rgba(56, 239, 125, 0.4); }
-        .bg-electrical { background: linear-gradient(135deg, #f6d365, #fda085); box-shadow: 0 10px 25px rgba(253, 160, 133, 0.4); }
-        .bg-fpl { background: linear-gradient(135deg, #373b44, #4286f4); box-shadow: 0 10px 25px rgba(66, 134, 244, 0.4); }
-        .bg-chemistry { background: linear-gradient(135deg, #ee0979, #ff6a00); box-shadow: 0 10px 25px rgba(238, 9, 121, 0.4); }
-        .bg-electronics { background: linear-gradient(135deg, #8e2de2, #4a00e0); box-shadow: 0 10px 25px rgba(74, 0, 224, 0.4); }
-        .bg-graphics { background: linear-gradient(135deg, #4facfe, #00f2fe); box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4); }
-
-        /* Bottom Menu Design */
-        .options-menu {
-            display: none;
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: #ffffff;
-            border-radius: 30px 30px 0 0;
-            padding: 30px 20px;
-            box-shadow: 0 -15px 50px rgba(0,0,0,0.6);
-            z-index: 2000;
-            animation: slideUp 0.4s ease-out;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-        #menuTitle { text-align: center; margin-bottom: 25px; font-size: 1.2rem; color: #000; font-weight: 700; }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            color: #000;
-            text-decoration: none;
-            border-bottom: 1px solid #eee;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .menu-item i { margin-right: 15px; color: #2575fc; width: 25px; text-align: center; font-size: 1.2rem; }
-
-        .sub-menu { background: #f9f9f9; padding-left: 15px; border-radius: 15px; margin: 5px 0; display: none; }
-        .sub-menu a { display: block; padding: 14px; color: #555; text-decoration: none; font-size: 0.95rem; border-bottom: 1px solid #eee; }
-
-        .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 1500; }
-
-        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; color: #555; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU Notes - Premium UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Deep Black Body Background */
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff; 
+            background-color: #000000; 
+            background-image: radial-gradient(circle at 50% 10%, #111 0%, #000 70%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        /* Top Black Side (Stripe) */
+        .top-black-bar {
+            background-color: #000000;
+            height: 8px;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+        }
+        /* White Header with Black Text */
+        header {
+            background-color: #ffffff; 
+            color: #000000; 
+            text-align: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        header h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; font-weight: 800; }
+        header p { margin: 0; font-size: 0.75rem; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 1px; }
+        .container { width: 95%; max-width: 1200px; margin: 0 auto; padding: 10px; }
+        h2 { color: #ffffff; font-size: 1rem; margin: 35px 0 20px 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; }
+        h2::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.1); margin-left: 15px; }
+        .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 20px; justify-items: center; }
+        .subject-card { width: 100px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .subject-card:hover { transform: translateY(-8px); }
+        .subject-card:active { transform: scale(0.9); }
+        .icon-box { width: 75px; height: 75px; border-radius: 22px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; color: white; font-size: 1.8rem; border: 1px solid rgba(255,255,255,0.1); }
+        .subject-card span { font-size: 0.75rem; font-weight: 600; color: #ddd; }
+        /* Custom Gradients for Subjects */
+        .bg-physics { background: linear-gradient(135deg, #6a11cb, #2575fc); box-shadow: 0 10px 25px rgba(37, 117, 252, 0.4); }
+        .bg-mechanics { background: linear-gradient(135deg, #f093fb, #f5576c); box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4); }
+        .bg-maths { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 10px 25px rgba(56, 239, 125, 0.4); }
+        .bg-electrical { background: linear-gradient(135deg, #f6d365, #fda085); box-shadow: 0 10px 25px rgba(253, 160, 133, 0.4); }
+        .bg-fpl { background: linear-gradient(135deg, #373b44, #4286f4); box-shadow: 0 10px 25px rgba(66, 134, 244, 0.4); }
+        .bg-chemistry { background: linear-gradient(135deg, #ee0979, #ff6a00); box-shadow: 0 10px 25px rgba(238, 9, 121, 0.4); }
+        .bg-electronics { background: linear-gradient(135deg, #8e2de2, #4a00e0); box-shadow: 0 10px 25px rgba(74, 0, 224, 0.4); }
+        .bg-graphics { background: linear-gradient(135deg, #4facfe, #00f2fe); box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4); }
+        /* Bottom Menu Design */
+        .options-menu { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-radius: 30px 30px 0 0; padding: 30px 20px; box-shadow: 0 -15px 50px rgba(0,0,0,0.6); z-index: 2000; animation: slideUp 0.4s ease-out; max-height: 80vh; overflow-y: auto; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        #menuTitle { text-align: center; margin-bottom: 25px; font-size: 1.2rem; color: #000; font-weight: 700; }
+        .menu-item { display: flex; align-items: center; padding: 16px; color: #000; text-decoration: none; border-bottom: 1px solid #eee; font-size: 1rem; cursor: pointer; }
+        .menu-item i { margin-right: 15px; color: #2575fc; width: 25px; text-align: center; font-size: 1.2rem; }
+        .sub-menu { background: #f9f9f9; padding-left: 15px; border-radius: 15px; margin: 5px 0; display: none; }
+        .sub-menu a { display: block; padding: 14px; color: #555; text-decoration: none; font-size: 0.95rem; border-bottom: 1px solid #eee; }
+        .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 1500; }
+        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; color: #555; }
+    </style>
 </head>
 <body>
 
-    <!-- Black Side/Bar at the very top -->
-    <div class="top-black-bar"></div>
+    <div class="top-black-bar"></div>
 
-    <header>
-        <h1>SPPU Notes</h1>
-        <p>FE Engineering • 2025-2026</p>
-    </header>
+    <header>
+        <h1>SPPU Notes</h1>
+        <p>FE Engineering • 2025-2026</p>
+    </header>
 
-    <div class="container">
-        
-        <h2>Semester 1</h2>
-        <div class="subject-grid">
-            <div class="subject-card" onclick="openMenu('Engineering Physics')">
-                <div class="icon-box bg-physics"><i class="fa-solid fa-atom"></i></div>
-                <span>Physics</span>
-            </div>
-            <div class="subject-card" onclick="openMenu('Engineering Mechanics')">
-                <div class="icon-box bg-mechanics"><i class="fa-solid fa-gears"></i></div>
-                <span>Mechanics</span>
-            </div>
-            <div class="subject-card" onclick="openMenu('Mathematics 1')">
-                <div class="icon-box bg-maths"><i class="fa-solid fa-calculator"></i></div>
-                <span>Maths 1</span>
-            </div>
-            <div class="subject-card" onclick="openMenu('Basic Electrical')">
-                <div class="icon-box bg-electrical"><i class="fa-solid fa-bolt"></i></div>
-                <span>Electrical</span>
-            </div>
-            <div class="subject-card" onclick="openMenu('Programming (FPL)')">
-                <div class="icon-box bg-fpl"><i class="fa-solid fa-code"></i></div>
-                <span>FPL</span>
-            </div>
-        </div>
+    <div class="container">
+        <h2>Semester 1</h2>
+        <div class="subject-grid">
+            <div class="subject-card" onclick="openMenu('Engineering Physics')">
+                <div class="icon-box bg-physics"><i class="fa-solid fa-atom"></i></div>
+                <span>Physics</span>
+            </div>
+            <div class="subject-card" onclick="openMenu('Engineering Mechanics')">
+                <div class="icon-box bg-mechanics"><i class="fa-solid fa-gears"></i></div>
+                <span>Mechanics</span>
+            </div>
+            <div class="subject-card" onclick="openMenu('Mathematics 1')">
+                <div class="icon-box bg-maths"><i class="fa-solid fa-calculator"></i></div>
+                <span>Maths 1</span>
+            </div>
+            <div class="subject-card" onclick="openMenu('Basic Electrical')">
+                <div class="icon-box bg-electrical"><i class="fa-solid fa-bolt"></i></div>
+                <span>Electrical</span>
+            </div>
+            <div class="subject-card" onclick="openMenu('Programming (FPL)')">
+                <div class="icon-box bg-fpl"><i class="fa-solid fa-code"></i></div>
+                <span>FPL</span>
+            </div>
+        </div>
 
-        <h2>Semester 2</h2>
-        <div class="subject-grid">
-            <div class="subject-card" onclick="openMenu('Engineering Chemistry')">
-                <div class="icon-box bg-chemistry"><i class="fa-solid fa-flask-vial"></i></div>
-                <span>Chemistry</span>
-            </div>
-            <div class="subject-card" onclick="openMenu('Basic Electronics')">
-                <div class="icon-box bg-electronics"><i class="fa-solid fa-microchip"></i></div>
-                <span>Electronics</span>
-            </div>
-            <div class="subject-card" onclick="openMenu('Mathematics 2')">
-                <div class="icon-box bg-maths"><i class="fa-solid fa-square-root-variable"></i></div>
-                <span>Maths 2</span>
-            </div>
-            <div class="subject-card" onclick="openMenu('Engineering Graphics')">
-                <div class="icon-box bg-graphics"><i class="fa-solid fa-compass-drafting"></i></div>
-                <span>Graphics</span>
-            </div>
-        </div>
-    </div>
+        <h2>Semester 2</h2>
+        <div class="subject-grid">
+            <div class="subject-card" onclick="openMenu('Engineering Chemistry')">
+                <div class="icon-box bg-chemistry"><i class="fa-solid fa-flask-vial"></i></div>
+                <span>Chemistry</span>
+            </div>
+            <div class="subject-card" onclick="openMenu('Basic Electronics')">
+                <div class="icon-box bg-electronics"><i class="fa-solid fa-microchip"></i></div>
+                <span>Electronics</span>
+            </div>
+            <div class="subject-card" onclick="openMenu('Mathematics 2')">
+                <div class="icon-box bg-maths"><i class="fa-solid fa-square-root-variable"></i></div>
+                <span>Maths 2</span>
+            </div>
+            <div class="subject-card" onclick="openMenu('Engineering Graphics')">
+                <div class="icon-box bg-graphics"><i class="fa-solid fa-compass-drafting"></i></div>
+                <span>Graphics</span>
+            </div>
+        </div>
+    </div>
 
-    <!-- Menu Section -->
-    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-    <div class="options-menu" id="optionsMenu">
-        <h3 id="menuTitle">Subject Name</h3>
-        <a href="#" class="menu-item"><i class="fa-regular fa-file-lines"></i> Notes</a>
-        <div class="menu-item" onclick="toggleAssignments()">
-            <i class="fa-solid fa-pen-to-square"></i> Assignment 
-            <i class="fa-solid fa-chevron-down" style="margin-left: auto; font-size: 0.8rem; opacity: 0.3;"></i>
-        </div>
-        <div class="sub-menu" id="assignmentSubMenu">
-            <a href="#">Assignment 1</a>
-            <a href="#">Assignment 2</a>
-            <a href="#">Assignment 3</a>
-            <a href="#">Assignment 4</a>
-            <a href="#">Assignment 5</a>
-        </div>
-        <a href="#" class="menu-item"><i class="fa-solid fa-file-pdf"></i> Previous Year Question Papers</a>
-        <a href="#" class="menu-item"><i class="fa-solid fa-check-double"></i> Previous Year Papers Answers</a>
-    </div>
+    <!-- Menu Section -->
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+    <div class="options-menu" id="optionsMenu">
+        <h3 id="menuTitle">Subject Name</h3>
+        <a href="#" class="menu-item"><i class="fa-regular fa-file-lines"></i> Notes</a>
+        <div class="menu-item" onclick="toggleAssignments()">
+            <i class="fa-solid fa-pen-to-square"></i> Assignment 
+            <i class="fa-solid fa-chevron-down" style="margin-left: auto; font-size: 0.8rem; opacity: 0.3;"></i>
+        </div>
+        <div class="sub-menu" id="assignmentSubMenu">
+            <a href="#">Assignment 1</a>
+            <a href="#">Assignment 2</a>
+            <a href="#">Assignment 3</a>
+            <a href="#">Assignment 4</a>
+            <a href="#">Assignment 5</a>
+        </div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-file-pdf"></i> Previous Year Question Papers</a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-check-double"></i> Previous Year Papers Answers</a>
 
-    <footer>
-        SPPU Notes &copy; 2025-2026
-    </footer>
+        <!-- Admin-only Upload Section -->
+        <div id="uploadDiv" style="display:none; margin-top:15px; border-top:1px solid #ddd; padding-top:10px;">
+            <label style="font-weight:600;">Upload File (Admin Only):</label><br>
+            <input type="file" id="fileInput" style="margin-top:5px;">
+            <button onclick="uploadFile()" style="margin-top:5px; padding:5px 10px; cursor:pointer;">Upload</button>
+        </div>
+    </div>
 
-    <script>
-        function openMenu(subjectName) {
-            document.getElementById('menuTitle').innerText = subjectName;
-            document.getElementById('optionsMenu').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('assignmentSubMenu').style.display = 'none';
-        }
-        function closeMenu() {
-            document.getElementById('optionsMenu').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-        function toggleAssignments() {
-            var subMenu = document.getElementById('assignmentSubMenu');
-            subMenu.style.display = (subMenu.style.display === 'block') ? 'none' : 'block';
-        }
-    </script>
+    <footer>
+        SPPU Notes &copy; 2025-2026
+    </footer>
+
+    <script>
+        function openMenu(subjectName) {
+            document.getElementById('menuTitle').innerText = subjectName;
+            document.getElementById('optionsMenu').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('assignmentSubMenu').style.display = 'none';
+        }
+        function closeMenu() {
+            document.getElementById('optionsMenu').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+        function toggleAssignments() {
+            var subMenu = document.getElementById('assignmentSubMenu');
+            subMenu.style.display = (subMenu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // ===== Admin Logic =====
+        let isAdmin = false;
+        let password = prompt("Enter admin password:"); // apna password yahan daale
+
+        if(password === "SPPUadmin123"){ // <-- change your secret password
+            isAdmin = true;
+        }
+
+        if(isAdmin){
+            document.getElementById("uploadDiv").style.display = "block";
+        }
+
+        function uploadFile(){
+            let fileInput = document.getElementById("fileInput");
+            if(fileInput.files.length === 0){
+                alert("Please select a file first!");
+                return;
+            }
+            let fileName = fileInput.files[0].name;
+            alert("File selected: " + fileName + "\n(Upload logic yahan implement karna hai)");
+        }
+    </script>
 </body>
 </html>
