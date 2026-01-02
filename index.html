@@ -15,22 +15,26 @@
             --purple-blue: #6a11cb;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg-color); color: var(--text-color); padding-bottom: 90px; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg-color); color: var(--text-color); padding-bottom: 100px; overflow-x: hidden; }
         
-        /* Header */
-        header { background: var(--header-bg); color: var(--header-text); text-align: center; padding: 15px 10px; border-radius: 0 0 30px 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* Header thoda upar */
+        header { background: var(--header-bg); color: var(--header-text); text-align: center; padding: 15px 10px; border-radius: 0 0 30px 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
         header h1 { margin: 0; font-size: 1rem; text-transform: uppercase; font-weight: 900; }
 
-        /* Views */
-        .view { display: none; padding: 20px; }
+        /* Navigation Views */
+        .view { display: none; padding: 20px; animation: fadeIn 0.3s; }
         .view.active { display: block; }
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
-        /* Subject Cards */
+        /* Subject Grid */
+        .sem-label { font-size: 1.2rem; font-weight: bold; margin: 20px 0 15px; border-left: 5px solid var(--purple-blue); padding-left: 12px; }
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .card { display: flex; flex-direction: column; align-items: center; cursor: pointer; text-align: center; }
-        .icon { width: 80px; height: 80px; border-radius: 24px; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5); margin-bottom: 8px; }
-        .icon svg { width: 40px; height: 40px; fill: #fff; }
-        .sub-name { font-size: 0.65rem; color: #bbb; font-weight: 600; }
+        .card { display: flex; flex-direction: column; align-items: center; cursor: pointer; text-align: center; transition: 0.2s; }
+        .card:active { transform: scale(0.9); }
+
+        /* Glow Icons */
+        .icon { width: 80px; height: 80px; border-radius: 24px; display: flex; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0,0,0,0.5); margin-bottom: 8px; }
+        .icon svg { width: 40px; height: 40px; fill: #fff; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
 
         /* Gradients */
         .g1 { background: linear-gradient(135deg, #00d2ff, #3a7bd5); } .g2 { background: linear-gradient(135deg, #f85032, #e73827); }
@@ -38,27 +42,32 @@
         .g5 { background: linear-gradient(135deg, #4facfe, #00f2fe); } .g6 { background: linear-gradient(135deg, #962668, #db7093); }
         .g7 { background: linear-gradient(135deg, #6a11cb, #2575fc); } .g8 { background: linear-gradient(135deg, #232526, #414345); }
         .g9 { background: linear-gradient(135deg, #fc4a1a, #f7b733); }
+        .sub-name { font-size: 0.65rem; color: #bbb; font-weight: 600; line-height: 1.2; }
 
-        /* Modal Settings */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 1000; justify-content: center; align-items: center; }
-        .modal { background: #111; width: 90%; max-width: 380px; border-radius: 30px; padding: 20px; border: 1px solid #222; text-align: center; max-height: 80vh; overflow-y: auto; }
-        .btn-opt { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 18px; font-weight: bold; cursor: pointer; margin-bottom: 12px; text-align: left; }
-        
-        /* Admin Upload Button */
-        .btn-up { background: #2ecc71; color: #fff; padding: 10px; border-radius: 12px; border: none; cursor: pointer; display: none; width: 100%; margin-bottom: 15px; font-weight: bold; }
-
-        /* File List Items */
-        .file-item { background: #1a1a1a; color: #fff; padding: 15px; border-radius: 15px; margin-bottom: 10px; display: flex; align-items: center; border: 1px solid #333; cursor: pointer; text-align: left; }
-
-        /* PDF VIEWER SCREEN */
-        #viewer-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 5000; padding-top: 20px; }
-        #pdf-frame { width: 100%; height: 90%; border: none; }
-
-        /* Bottom Nav */
+        /* Bottom Nav - Purple Blue */
         nav { position: fixed; bottom: 0; width: 100%; max-width: 480px; background: var(--nav-gradient); display: flex; justify-content: space-around; padding: 15px 0; border-radius: 25px 25px 0 0; z-index: 500; }
         .nav-tab { color: rgba(255,255,255,0.5); text-align: center; cursor: pointer; flex: 1; font-size: 0.75rem; font-weight: bold; }
         .nav-tab.active { color: #fff; }
         .nav-tab svg { width: 22px; height: 22px; fill: currentColor; display: block; margin: 0 auto 5px; }
+
+        /* Modal Settings */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal { background: #111; width: 90%; max-width: 380px; border-radius: 30px; padding: 25px; border: 1px solid #222; text-align: center; max-height: 85vh; overflow-y: auto; }
+        .btn-opt { width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 18px; font-weight: bold; cursor: pointer; margin-bottom: 12px; text-align: left; display: flex; justify-content: space-between; }
+        
+        /* File List Items */
+        .file-item { background: #1a1a1a; color: #fff; padding: 15px; border-radius: 15px; margin-bottom: 10px; display: flex; align-items: center; border: 1px solid #333; cursor: pointer; }
+        .file-item svg { width: 20px; height: 20px; fill: #2575fc; margin-right: 12px; }
+
+        /* Admin Add Link UI */
+        .admin-add-box { background: #1a1a1a; padding: 15px; border-radius: 15px; border: 1px dashed var(--purple-blue); margin-bottom: 20px; display: none; }
+        .admin-add-box input { width: 100%; padding: 10px; margin: 5px 0; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; }
+        .btn-add { background: #2ecc71; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+        /* Profile Login Card */
+        .login-card { background: #111; padding: 25px; border-radius: 25px; border: 1px solid #222; text-align: center; margin: 20px; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; }
+        .btn-primary { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -67,41 +76,43 @@
 
 <!-- HOME -->
 <div id="home" class="view active">
-    <div class="grid" id="subjects-grid" style="padding: 20px;"></div>
+    <div class="sem-label">Semester 1</div>
+    <div class="grid" id="sem1"></div>
+    <div class="sem-label">Semester 2</div>
+    <div class="grid" id="sem2"></div>
 </div>
 
 <!-- RECENT -->
 <div id="recent" class="view">
-    <h2 style="padding: 20px;">Recently Viewed</h2>
-    <div id="history-list" style="padding: 0 20px;"></div>
+    <div class="sem-label">Recently Opened</div>
+    <div id="history-list" style="padding: 10px;"></div>
 </div>
 
 <!-- PROFILE -->
 <div id="profile" class="view">
-    <div id="login-form" style="padding: 20px;">
-        <div style="background: #111; padding: 25px; border-radius: 25px; border: 1px solid #222;">
-            <h3>Admin / Student Login</h3>
-            <input type="text" id="l-user" placeholder="Username" style="width:100%; padding:12px; margin:10px 0; border-radius:10px; background:#000; border:1px solid #333; color:#fff;">
-            <input type="password" id="l-pass" placeholder="Password" style="width:100%; padding:12px; margin:10px 0; border-radius:10px; background:#000; border:1px solid #333; color:#fff;">
-            <button onclick="login()" style="width:100%; padding:15px; border-radius:15px; border:none; background:#fff; font-weight:bold; margin-top:10px;">Login</button>
-        </div>
+    <div id="login-form" class="login-card">
+        <h3>Login</h3>
+        <input type="text" id="l-user" placeholder="Username">
+        <input type="password" id="l-pass" placeholder="Password">
+        <button class="btn-primary" onclick="login()">Login</button>
     </div>
-    <div id="logged-in" style="display:none; padding: 20px; text-align:center;">
+    <div id="logged-in" class="login-card" style="display:none">
         <h3 id="u-name"></h3>
         <p id="u-role" style="color:#2575fc; font-weight:bold;"></p>
-        <button onclick="logout()" style="width:100%; padding:15px; border-radius:15px; border:none; background:#e74c3c; color:#fff; font-weight:bold;">Logout</button>
+        <button class="btn-primary" style="background:#e74c3c; color:#fff;" onclick="logout()">Logout</button>
     </div>
 </div>
 
-<!-- SUBJECT MODAL -->
+<!-- MODAL -->
 <div id="overlay" class="overlay" onclick="closeMenu()">
     <div class="modal" onclick="event.stopPropagation()">
-        <h3 id="mod-sub">Subject Name</h3>
+        <h3 id="mod-sub" style="margin-bottom: 20px;">Subject Name</h3>
+        
         <div id="main-menu">
-            <button class="btn-opt" onclick="showSection('Units')">Notes (Unit 1-5) ➔</button>
-            <button class="btn-opt" onclick="showSection('Assignments')">Assignments (1-5) ➔</button>
-            <button class="btn-opt" onclick="openCategory('Previous Year Papers')">PYQ Papers ➔</button>
-            <button class="btn-opt" onclick="openCategory('Paper Answers')">Paper Answers ➔</button>
+            <button class="btn-opt" onclick="showSection('Units')">Notes (Unit 1-5) <span>➔</span></button>
+            <button class="btn-opt" onclick="showSection('Assignments')">Assignments (1-5) <span>➔</span></button>
+            <button class="btn-opt" onclick="openCategory('Previous Year Papers')">PYQ Papers <span>➔</span></button>
+            <button class="btn-opt" onclick="openCategory('Paper Answers')">Paper Answers <span>➔</span></button>
         </div>
 
         <div id="sub-menu" style="display:none">
@@ -111,21 +122,23 @@
 
         <div id="file-list-view" style="display:none">
             <p onclick="goBack()" style="color:#2575fc; cursor:pointer; margin-bottom:15px; font-weight:bold;">← Back</p>
-            <h4 id="cat-title" style="color:#2575fc;">Files</h4>
-            <button class="btn-up" id="up-btn" onclick="uploadFile()">+ Admin: Upload PDF</button>
+            <h4 id="cat-title" style="color:#2575fc; margin-bottom: 15px;">Files</h4>
+            
+            <!-- ADMIN LINK ADDING BOX -->
+            <div id="admin-link-box" class="admin-add-box">
+                <input type="text" id="link-name" placeholder="File Name (Ex: Unit 1 Imp)">
+                <input type="text" id="link-url" placeholder="Paste Google Drive Link Here">
+                <button class="btn-add" onclick="addDriveLink()">Add Link to List</button>
+            </div>
+
             <div id="file-container"></div>
         </div>
-        <button onclick="closeMenu()" style="background:none; border:none; color:#e74c3c; font-weight:bold; margin-top:20px;">Close</button>
+        
+        <button onclick="closeMenu()" style="background:none; border:none; color:#e74c3c; font-weight:bold; margin-top:20px; cursor:pointer;">Close</button>
     </div>
 </div>
 
-<!-- FULL SCREEN PDF VIEWER -->
-<div id="viewer-screen">
-    <button onclick="closeViewer()" style="margin: 15px; padding: 10px 20px; border-radius: 10px; border:none; background:#fff; font-weight:bold;">← Back to App</button>
-    <iframe id="pdf-frame"></iframe>
-</div>
-
-<!-- NAVIGATION -->
+<!-- BOTTOM NAVIGATION -->
 <nav>
     <div class="nav-tab active" onclick="switchTab('home', this)"><svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>Home</div>
     <div class="nav-tab" onclick="switchTab('recent', this)"><svg viewBox="0 0 24 24"><path d="M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3M12,8V13L16.28,15.54L17,14.33L13.5,12.25V8H12Z"/></svg>Recent</div>
@@ -136,21 +149,39 @@
     let isAdmin = false;
     let currentSub = "";
     let currentCat = "";
-    let currentView = "main";
 
-    const subjects = [
-        {n: "Engineering Physics", c: "g1", i: "⚛️"}, {n: "Engineering Mechanics", c: "g2", i: "⚙️"},
-        {n: "Engineering Mathematics 1", c: "g3", i: "📐"}, {n: "Basic Electrical", c: "g4", i: "⚡"},
-        {n: "Engineering FPL", c: "g5", i: "💻"}, {n: "Engineering Chemistry", c: "g6", i: "🧪"},
-        {n: "Engineering Electronics", c: "g7", i: "🔌"}, {n: "Engineering Graphics", c: "g8", i: "🖊️"},
-        {n: "Engineering Maths 2", c: "g9", i: "♾️"}
-    ];
+    const svgs = {
+        ph: `<svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 1,0 22,12A10,10 0 0,0 12,2M12,19.7A7.7,7.7 0 1,1 19.7,12A7.7,7.7 0 0,1 12,19.7"/></svg>`,
+        me: `<svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5"/></svg>`,
+        m1: `<svg viewBox="0 0 24 24"><path d="M19,3H5V5H19V3M19,19H5V21H19V19M12,7L6,17H18L12,7Z"/></svg>`,
+        ee: `<svg viewBox="0 0 24 24"><path d="M7,2V11H10V22L17,10H13L17,2H7Z"/></svg>`,
+        fpl: `<svg viewBox="0 0 24 24"><path d="M14.6,16.6L19.2,12L14.6,7.4L16,6L22,12L16,18L14.6,16.6M9.4,16.6L4.8,12L9.4,7.4L8,6L2,12L8,18L9.4,16.6Z"/></svg>`,
+        ch: `<svg viewBox="0 0 24 24"><path d="M12,3L4,19V21H20V19L12,3Z"/></svg>`,
+        ex: `<svg viewBox="0 0 24 24"><path d="M21,16.5L12,21.5L3,16.5V7.5L12,2.5L21,7.5V16.5Z"/></svg>`,
+        eg: `<svg viewBox="0 0 24 24"><path d="M20.71,7.04L18.88,8.88L15.12,5.12L16.96,3.29L20.71,7.04M3,17.25V21H6.75L17.81,9.93L3,17.25Z"/></svg>`,
+        m2: `<svg viewBox="0 0 24 24"><path d="M13,6H11V11H6V13H11V18H13V13H18V11H13V6Z"/></svg>`
+    };
+
+    const subsData = {
+        sem1: [
+            {n: "Engineering Physics", c: "g1", i: svgs.ph}, {n: "Engineering Mechanics", c: "g2", i: svgs.me},
+            {n: "Engineering Mathematics 1", c: "g3", i: svgs.m1}, {n: "Basic Electrical", c: "g4", i: svgs.ee},
+            {n: "Engineering FPL", c: "g5", i: svgs.fpl}
+        ],
+        sem2: [
+            {n: "Engineering Chemistry", c: "g6", i: svgs.ch}, {n: "Engineering Electronics", c: "g7", i: svgs.ex},
+            {n: "Engineering Graphics", c: "g8", i: svgs.eg}, {n: "Engineering Maths 2", c: "g9", i: svgs.m2}
+        ]
+    };
 
     window.onload = () => {
-        const grid = document.getElementById('subjects-grid');
-        subjects.forEach(s => {
-            grid.innerHTML += `<div class="card" onclick="openSubject('${s.n}')"><div class="icon ${s.c}">${s.i}</div><div class="sub-name">${s.n}</div></div>`;
-        });
+        const render = (id, arr) => {
+            const grid = document.getElementById(id);
+            arr.forEach(s => {
+                grid.innerHTML += `<div class="card" onclick="openSubject('${s.n}')"><div class="icon ${s.c}">${s.i}</div><div class="sub-name">${s.n}</div></div>`;
+            });
+        };
+        render('sem1', subsData.sem1); render('sem2', subsData.sem2);
     };
 
     function switchTab(id, el) {
@@ -158,7 +189,7 @@
         document.getElementById(id).classList.add('active');
         document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
-        if(id === 'recent') updateHistory();
+        if(id === 'recent') renderRecent();
     }
 
     function openSubject(name) {
@@ -169,7 +200,6 @@
     }
 
     function showSection(type) {
-        currentView = "sub";
         document.getElementById('main-menu').style.display = 'none';
         document.getElementById('sub-menu').style.display = 'block';
         const container = document.getElementById('sub-container');
@@ -186,7 +216,7 @@
         document.getElementById('sub-menu').style.display = 'none';
         document.getElementById('file-list-view').style.display = 'block';
         document.getElementById('cat-title').innerText = cat;
-        document.getElementById('up-btn').style.display = isAdmin ? 'block' : 'none';
+        document.getElementById('admin-link-box').style.display = isAdmin ? 'block' : 'none';
         renderFiles();
     }
 
@@ -194,66 +224,53 @@
         const container = document.getElementById('file-container');
         container.innerHTML = "";
         const key = `${currentSub}_${currentCat}`;
-        const files = JSON.parse(localStorage.getItem(key)) || [];
-        if(files.length === 0) container.innerHTML = "<p style='color:#555;'>No files uploaded.</p>";
-        files.forEach((file, index) => {
-            container.innerHTML += `<div class="file-item" onclick="viewPDF('${key}', ${index})">📄 ${file.name}</div>`;
+        const links = JSON.parse(localStorage.getItem(key)) || [];
+        if(links.length === 0) container.innerHTML = "<p style='color:#555;'>No files added yet.</p>";
+        links.forEach((item, index) => {
+            container.innerHTML += `
+                <div class="file-item" onclick="openDriveLink('${item.url}', '${item.name}')">
+                    <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,9V3.5L18.5,9M6,20V4H12V10H18V20H6Z"/></svg>
+                    <span>${item.name}</span>
+                </div>`;
         });
     }
 
-    // ACTUAL PDF UPLOAD LOGIC
-    function uploadFile() {
-        const inp = document.createElement('input');
-        inp.type = 'file';
-        inp.accept = 'application/pdf';
-        inp.onchange = e => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const fileData = event.target.result; // Base64 data
-                const key = `${currentSub}_${currentCat}`;
-                let files = JSON.parse(localStorage.getItem(key)) || [];
-                files.push({ name: file.name, data: fileData });
-                localStorage.setItem(key, JSON.stringify(files));
-                alert("File Uploaded Successfully!");
-                renderFiles();
-            };
-            reader.readAsDataURL(file);
-        };
-        inp.click();
-    }
+    // ADMIN ADDS DRIVE LINK
+    function addDriveLink() {
+        const name = document.getElementById('link-name').value;
+        const url = document.getElementById('link-url').value;
+        if(!name || !url) return alert("Enter both Name and Link!");
 
-    function viewPDF(key, index) {
-        const files = JSON.parse(localStorage.getItem(key));
-        const file = files[index];
-        const frame = document.getElementById('pdf-frame');
-        frame.src = file.data;
-        document.getElementById('viewer-screen').style.display = 'block';
+        const key = `${currentSub}_${currentCat}`;
+        let links = JSON.parse(localStorage.getItem(key)) || [];
+        links.push({ name: name, url: url });
+        localStorage.setItem(key, JSON.stringify(links));
         
-        // Add to history
-        let history = JSON.parse(localStorage.getItem('recent_history')) || [];
-        if(!history.some(h => h.name === file.name)) {
-            history.unshift({ name: file.name, data: file.data });
-            localStorage.setItem('recent_history', JSON.stringify(history.slice(0, 10)));
-        }
+        document.getElementById('link-name').value = "";
+        document.getElementById('link-url').value = "";
+        alert("Link added successfully!");
+        renderFiles();
     }
 
-    function updateHistory() {
+    function openDriveLink(url, name) {
+        // Save to recent
+        let recent = JSON.parse(localStorage.getItem('recent_docs')) || [];
+        if(!recent.some(r => r.url === url)) {
+            recent.unshift({ name: name, url: url });
+            localStorage.setItem('recent_docs', JSON.stringify(recent.slice(0,10)));
+        }
+        window.open(url, '_blank'); // Opens Google Drive
+    }
+
+    function renderRecent() {
         const container = document.getElementById('history-list');
-        const history = JSON.parse(localStorage.getItem('recent_history')) || [];
-        container.innerHTML = history.length === 0 ? "No history." : "";
-        history.forEach((h, i) => {
-            container.innerHTML += `<div class="file-item" onclick="openHistoryPDF(${i})">📄 ${h.name}</div>`;
+        const docs = JSON.parse(localStorage.getItem('recent_docs')) || [];
+        container.innerHTML = docs.length === 0 ? "<p style='text-align:center; color:#555;'>No history.</p>" : "";
+        docs.forEach(d => {
+            container.innerHTML += `<div class="file-item" onclick="window.open('${d.url}', '_blank')">📄 ${d.name}</div>`;
         });
     }
 
-    function openHistoryPDF(i) {
-        const history = JSON.parse(localStorage.getItem('recent_history'));
-        document.getElementById('pdf-frame').src = history[i].data;
-        document.getElementById('viewer-screen').style.display = 'block';
-    }
-
-    function closeViewer() { document.getElementById('viewer-screen').style.display = 'none'; document.getElementById('pdf-frame').src = ""; }
     function login() {
         const u = document.getElementById('l-user').value;
         const p = document.getElementById('l-pass').value;
@@ -261,14 +278,16 @@
             isAdmin = true;
             document.getElementById('login-form').style.display = 'none';
             document.getElementById('logged-in').style.display = 'block';
-            document.getElementById('u-name').innerText = "Hello, Pratap Mahadik";
-            document.getElementById('u-role').innerText = "ADMIN ACCESS";
-        } else { alert("Login failed! Invalid credentials."); }
+            document.getElementById('u-name').innerText = "Pratap Mahadik";
+            document.getElementById('u-role').innerText = "ADMIN CONTROL";
+        } else { alert("Invalid Credentials!"); }
     }
+
     function logout() { isAdmin = false; location.reload(); }
     function closeMenu() { document.getElementById('overlay').style.display = 'none'; }
     function showMain() { document.getElementById('main-menu').style.display = 'block'; document.getElementById('sub-menu').style.display = 'none'; document.getElementById('file-list-view').style.display = 'none'; }
     function goBack() { if(currentCat.includes('Unit') || currentCat.includes('Assignment')) showSection(currentCat.includes('Unit') ? 'Units' : 'Assignments'); else showMain(); }
+    function switchView(id) { document.querySelectorAll('.view').forEach(v => v.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 </script>
 </body>
 </html>
